@@ -1,37 +1,23 @@
 class UsersController < ApplicationController
-
-  # GET: /users
-  get "/users" do
-    erb :"/users/index.html"
+  
+  get '/signup' do
+    erb :'users/signup'
   end
 
-  # GET: /users/new
-  get "/users/new" do
-    erb :"/users/new.html"
-  end
-
-  # POST: /users
-  post "/users" do
-    redirect "/users"
-  end
-
-  # GET: /users/5
-  get "/users/:id" do
-    erb :"/users/show.html"
-  end
-
-  # GET: /users/5/edit
-  get "/users/:id/edit" do
-    erb :"/users/edit.html"
-  end
-
-  # PATCH: /users/5
-  patch "/users/:id" do
-    redirect "/users/:id"
-  end
-
-  # DELETE: /users/5/delete
-  delete "/users/:id/delete" do
-    redirect "/users"
+  post '/signup' do
+    if params[:username].blank? || params[:email].blank? || params[:password].blank?
+      flash[:error] = "All fields are required to sign up."
+      redirect :'/signup'
+    elsif User.find_by(username: params[:username])
+      flash[:error] = "Username already taken"
+      redirect :'/signup'
+    elsif User.find_by(email: params[:email])
+      flash[:error] = "An account already exists with this email"
+      redirect :'/signup'
+    else
+      @user = User.create(params)
+      session[:user_id] = @user.id
+      redirect :'/'
+    end
   end
 end
