@@ -12,7 +12,11 @@ gem 'pry'
 gem 'bcrypt'
 gem 'tux'
 gem 'kill_shotgun'
-gem 'rack-flash3'
+
+group :development, :test do 
+  gem 'dotenv'
+  gem 'session_secret_generator'
+end
 
 group :test do
   gem 'rspec'
