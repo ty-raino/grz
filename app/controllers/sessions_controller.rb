@@ -11,14 +11,16 @@ class SessionsController < ApplicationController
 
     post '/signin' do
         if params[:username].empty? || params[:password].empty?
+            flash[:error] = "All fields are required to sign in"
             erb :'sessions/signin'
         else
-            @user = User.find_by(username: params[:username], email: params[:email])
+            @user = User.find_by(username: params[:username])
             if @user && @user.authenticate(params[:password])
                 session[:user_id] = @user.user_id
+                flash[:success] = "You are now logged in!"
                 redirect :'/'
             else
-                @error = "Incorrect email or password"
+                flash[:error] = "Incorrect email or password"
                 erb :'/sessions/signin'
             end
         end
@@ -26,6 +28,7 @@ class SessionsController < ApplicationController
 
     delete '/signout' do
         session.clear
+        flash[:success] = "Signed out"
         redirect '/'
     end
 end
