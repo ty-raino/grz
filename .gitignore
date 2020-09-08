@@ -1,4 +1,4 @@
 .env
 
 
-info/
+/info/*
