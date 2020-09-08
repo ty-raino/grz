@@ -8,3 +8,4 @@ run ApplicationController
 use UpvotesController
 use ReviewsController
 use UsersController
+use SessionsController

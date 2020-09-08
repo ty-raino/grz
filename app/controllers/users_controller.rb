@@ -1,16 +1,16 @@
 class UsersController < ApplicationController
   
-  get '/signup' do
-    erb :'users/signup'
+  get '/register' do
+    erb :'users/register'
   end
 
-  post '/signup' do
+  post '/register' do
     if params[:username].blank? || params[:email].blank? || params[:password].blank?
-      redirect :'/signup'
+      redirect :'/register'
     elsif User.find_by(username: params[:username])
-      redirect :'/signup'
+      redirect :'/register'
     elsif User.find_by(email: params[:email])
-      redirect :'/signup'
+      redirect :'/register'
     else
       @user = User.create(params)
       session[:user_id] = @user.id
