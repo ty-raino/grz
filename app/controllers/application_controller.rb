@@ -16,8 +16,14 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
-  # not_found do
-  # end
+  not_found do
+    flash[:error] = "Page not found"
+    if signed_in?
+      redirect :"/reviews"
+    else
+      redirect '/register'
+    end
+  end
 
 private
 
@@ -27,6 +33,13 @@ private
 
   def signed_in?
     !!current_user
+  end
+
+  def redirect_if_not_signed_in 
+    if !signed_in
+      flash[:error] = "Sign in to view that page"
+      redirect '/login'
+    end
   end
 
 end

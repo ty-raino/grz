@@ -5,7 +5,6 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 run ApplicationController
-use UpvotesController
 use ReviewsController
 use UsersController
 use SessionsController

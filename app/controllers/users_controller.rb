@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       @user = User.create(params)
       session[:user_id] = @user.id
       flash[:success] = "You are now logged in"
-      redirect :'/'
+      redirect :'/reviews'
     end
   end
 end

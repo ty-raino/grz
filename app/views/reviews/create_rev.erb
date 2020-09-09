@@ -1,1 +1,14 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<h1>Create A Review</h1>
+
+<form method="post" action="/reviews">
+    <p>
+        <label for="game_title">Game Title</label>
+        <input type="title" type="text" name="review[game_title]" value="<%= @review.game_title%>"/>
+    </p>
+
+    <p>
+        <label for="body">body</label>
+         <textarea rows="8" cols="45" id="body" type="text" name="review[body]"><%= @review.body %></textarea>
+    </p>
+ <input type="submit" value="Create Review">
+</form>

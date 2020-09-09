@@ -16,9 +16,9 @@ class SessionsController < ApplicationController
         else
             @user = User.find_by(username: params[:username])
             if @user && @user.authenticate(params[:password])
-                session[:user_id] = @user.user_id
-                flash[:success] = "You are now logged in!"
-                redirect :'/'
+                session[:user_id] = @user.id
+                flash[:success] = "You are now signed in, #{@user.username.upcase}"
+                redirect :'/reviews'
             else
                 flash[:error] = "Incorrect email or password"
                 erb :'/sessions/signin'

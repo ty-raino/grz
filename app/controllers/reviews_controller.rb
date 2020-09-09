@@ -2,36 +2,85 @@ class ReviewsController < ApplicationController
 
   # GET: /reviews
   get "/reviews" do
-    erb :"/reviews/index.html"
+    @reviews = Review.all
+    erb "/reviews/main"
+    else
   end
 
-  # GET: /reviews/new
-  get "/reviews/new" do
-    erb :"/reviews/new.html"
+  # GET: /reviews/create
+  get "/reviews/create_rev" do
+    if signed_in?
+      @review = Review.new
+      erb :"/reviews/create_rev"
+    else
+      flash[:error] = "Sign in to make a review"
+      redirect :'/login'
+    end
   end
 
   # POST: /reviews
   post "/reviews" do
-    redirect "/reviews"
+    redirect_if_not_signed_in
+      @review = current_user.posts.build(game_title: params[:review][:title], body: params[:review][:body])
+    if @post.save
+      redirect "/reviews"
+    else
+      erb :'/reviews/create_rev'
+    end
+      
   end
 
   # GET: /reviews/5
   get "/reviews/:id" do
-    erb :"/reviews/show.html"
+    set_post
+    erb :"/reviews/show"
   end
 
   # GET: /reviews/5/edit
   get "/reviews/:id/edit" do
-    erb :"/reviews/edit.html"
+    set_post
+    redirect_if_not_authorized
+    erb :"/reviews/edit_rev"
   end
 
   # PATCH: /reviews/5
   patch "/reviews/:id" do
-    redirect "/reviews/:id"
+    set_post
+    redirect_if_not_authorized
+    if @review.update(game_title: params[:review][:game_title], body: params[:review][:body])
+      flash[:success] = "Review updated"
+      redirect "/reviews/#{@review.id}"
+    else
+      erb :'/review/edit_rev'
+    end
   end
 
   # DELETE: /reviews/5/delete
-  delete "/reviews/:id/delete" do
+  delete "/reviews/:id" do
+    set_post
+    redirect_if_not_authorized
+    @review.destroy
     redirect "/reviews"
+  end
+
+private
+  def set_post
+    @review = Review.find_by_id(params[:review_id])
+    if @review.nil?
+      flash[:error] = "Review not found"
+      redirect '/reviews'
+    end
+  end
+
+  def redirect_if_not_authorized
+    redirect_if_not_signed_in
+    if !authorize_review(@review)
+      flash[:error] = "You don't have permission to do that action"
+      redirect '/reviews'
+    end
+  end
+
+  def authorize_review(review)
+    current_user == review.user
   end
 end
