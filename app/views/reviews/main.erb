@@ -1,4 +1,32 @@
 <h1>Reviews</h1>
-<% @reviews.each do |review| %>
-<p> <a href="/reviews/<%= review.id %>"><%= review.game_title %></a></p>
-<% end %>
+<table>
+  <tr>
+    <th>Game Title</th>
+    <th>By</th>
+    <th>Body</th>
+  </tr>
+
+  <% @reviews.each do |review| %>
+    <tr>
+      <td><%=review.game_title%></td>
+      <td><%=review.user.username%></td>
+      <td><%=review.body%></td>
+    </tr>
+    <% end %>
+
+</table>
+<nav>
+
+
+<% if !signed_in?%>
+  <a href="/signin">Sign In</a>
+  <a href="/register">Register</a>
+<% else %>
+   <a href="/reviews/create_rev">Create a post</a>
+    <form method="post" action="/signout" style="display: inline-block;">
+    <input type="hidden" name="_method" value="delete" />
+    <input type="submit" value="Sign Out"/>
+    </form>
+    <% end %>
+
+</nav>

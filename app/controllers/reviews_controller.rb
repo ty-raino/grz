@@ -3,8 +3,7 @@ class ReviewsController < ApplicationController
   # GET: /reviews
   get "/reviews" do
     @reviews = Review.all
-    erb "/reviews/main"
-    else
+    erb :"/reviews/main"
   end
 
   # GET: /reviews/create
@@ -21,8 +20,8 @@ class ReviewsController < ApplicationController
   # POST: /reviews
   post "/reviews" do
     redirect_if_not_signed_in
-      @review = current_user.posts.build(game_title: params[:review][:title], body: params[:review][:body])
-    if @post.save
+      @review = current_user.reviews.build(game_title: params[:review][:title], body: params[:review][:body])
+    if @review.save
       redirect "/reviews"
     else
       erb :'/reviews/create_rev'

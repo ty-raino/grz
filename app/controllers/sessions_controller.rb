@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
     get '/signin' do
         if signed_in? 
             @users = User.all
-            redirect :'/'
+            redirect :'/reviews'
         else
             erb :'/sessions/signin'
         end
@@ -23,6 +23,15 @@ class SessionsController < ApplicationController
                 flash[:error] = "Incorrect email or password"
                 erb :'/sessions/signin'
             end
+        end
+    end
+
+    get 'users/:slug' do
+        @user = User.find_by_slug(params[:slug])
+        if @user
+            erb :'users/profile'
+        else
+            not_found
         end
     end
 

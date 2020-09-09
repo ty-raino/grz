@@ -21,7 +21,7 @@ class ApplicationController < Sinatra::Base
     if signed_in?
       redirect :"/reviews"
     else
-      redirect '/register'
+      redirect '/'
     end
   end
 
@@ -36,7 +36,7 @@ private
   end
 
   def redirect_if_not_signed_in 
-    if !signed_in
+    if !signed_in?
       flash[:error] = "Sign in to view that page"
       redirect '/login'
     end
