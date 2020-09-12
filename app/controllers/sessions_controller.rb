@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
             @user = User.find_by(username: params[:username])
             if @user && @user.authenticate(params[:password])
                 session[:user_id] = @user.id
-                flash[:success] = "You are now signed in, #{@user.username.upcase}"
+                flash[:success] = "You are now signed in"
                 redirect :'/reviews'
             else
                 flash[:error] = "Incorrect email or password"
@@ -25,16 +25,7 @@ class SessionsController < ApplicationController
             end
         end
     end
-
-    get 'users/:slug' do
-        @user = User.find_by_slug(params[:slug])
-        if @user
-            erb :'users/profile'
-        else
-            not_found
-        end
-    end
-
+    
     delete '/signout' do
         session.clear
         flash[:success] = "Signed out"

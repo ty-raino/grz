@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   post '/register' do
     if params[:username].blank? || params[:email].blank? || params[:password].blank?
-      flash[:message] = "All fields are required to register"
+      flash[:error] = "All fields are required to register"
       redirect :'/register'
     elsif User.find_by(username: params[:username])
       flash[:error] = "Username already taken"
@@ -21,4 +21,14 @@ class UsersController < ApplicationController
       redirect :'/reviews'
     end
   end
+
+  get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    if @user
+        erb :'users/profile'
+    else
+        not_found
+    end
+end
+  
 end

@@ -1,23 +1,18 @@
-<h1>Reviews</h1>
-<table>
-  <tr>
-    <th>Game Title</th>
-    <th>By</th>
-    <th>Body</th>
-  </tr>
+<h1> Game Reviews</h1>
 
-  <% @reviews.each do |review| %>
-    <tr>
-      <td><%=review.game_title%></td>
-      <td><%=review.user.username%></td>
-      <td><%=review.body%></td>
-    </tr>
+  <nav>
+  <% if @reviews.empty? %>
+    <p>
+    <em>Be the first to make a review<em>
+    </p>
+  <% else %>
+    <% @reviews.each do |review| %>
+    <p><a href="/reviews/<%=review.id%>"><%=review.game_title%></a></p>
     <% end %>
+  <% end %>
+  </nav>
 
-</table>
 <nav>
-
-
 <% if !signed_in?%>
   <a href="/signin">Sign In</a>
   <a href="/register">Register</a>
@@ -28,5 +23,4 @@
     <input type="submit" value="Sign Out"/>
     </form>
     <% end %>
-
 </nav>

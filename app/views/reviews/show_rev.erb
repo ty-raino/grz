@@ -1,1 +1,12 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<h1> <%= @review.game_title %></h1>
+<p> <%= @review.user.username%></p>
+<p> <%= @review.body %></p>
+<% if authorize_review(@review)%>
+<div>
+<a href="/reviews/<%= @review.id%>/edit"><button>Edit</button></a>
+<form method="post" action="/reviews/<%= @review.id %>" style="display: inline-block;">
+      <input type="hidden" name="_method" value="delete" />
+      <input type="submit" value="Delete" />
+    </form>
+</div>
+<% end %>

@@ -20,7 +20,7 @@ class ReviewsController < ApplicationController
   # POST: /reviews
   post "/reviews" do
     redirect_if_not_signed_in
-      @review = current_user.reviews.build(game_title: params[:review][:title], body: params[:review][:body])
+      @review = current_user.reviews.build(game_title: params[:review][:game_title], body: params[:review][:body])
     if @review.save
       redirect "/reviews"
     else
@@ -31,20 +31,20 @@ class ReviewsController < ApplicationController
 
   # GET: /reviews/5
   get "/reviews/:id" do
-    set_post
-    erb :"/reviews/show"
+    set_review
+    erb :"/reviews/show_rev"
   end
 
   # GET: /reviews/5/edit
   get "/reviews/:id/edit" do
-    set_post
+    set_review
     redirect_if_not_authorized
     erb :"/reviews/edit_rev"
   end
 
   # PATCH: /reviews/5
   patch "/reviews/:id" do
-    set_post
+    set_review
     redirect_if_not_authorized
     if @review.update(game_title: params[:review][:game_title], body: params[:review][:body])
       flash[:success] = "Review updated"
@@ -54,17 +54,17 @@ class ReviewsController < ApplicationController
     end
   end
 
-  # DELETE: /reviews/5/delete
+  # DELETE: /reviews/5
   delete "/reviews/:id" do
-    set_post
+    set_review
     redirect_if_not_authorized
     @review.destroy
     redirect "/reviews"
   end
 
 private
-  def set_post
-    @review = Review.find_by_id(params[:review_id])
+  def set_review
+    @review = Review.find_by_id(params[:id])
     if @review.nil?
       flash[:error] = "Review not found"
       redirect '/reviews'

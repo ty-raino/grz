@@ -1,1 +1,15 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h1>Edit Post</h1>
+
+<form method="post" action="/reviews/<%= @review.id %>">
+    <input type="hidden" name="_method" value="patch" />
+
+<p>
+        <label for="game_title"></label>
+        <input type="title" type="text" placeholder="Title" name="review[game_title]" value="<%= @review.game_title%>"/>
+    </p>
+    <p>
+        <label for="body"></label>
+         <textarea rows="4" cols="50" placeholder="Text" id="body" type="text" name="review[body]"><%= @review.body %></textarea>
+    </p>
+<input type="submit" value="Update Review"/>
+</form>
