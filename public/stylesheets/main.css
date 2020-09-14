@@ -12,12 +12,6 @@
   }
 
   /* --- Welcome Page Styles --- */
-  body {
-    background-color: #641E16;
-    color: #333;
-    font-family: Sans-Serif;
-    line-height: 18px;
-  }
 
   .error {
     color: red;
@@ -30,12 +24,10 @@
 
   .wrapper {
     background: #fff;
-    -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
-    -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
-    box-shadow: 0 0 10px rgba(0,0,0,.3);
+    
+    
     margin: 16px auto;
-    max-width: 960px;
-    padding: 2.25%; /* 18px / 800px */
+    padding: 1%; /* 18px / 800px */
     width: 85%;
   }
 
@@ -69,13 +61,7 @@
     margin: 0 auto;
   }
 
-  .sidebar {
-    background: #eee;
-    border: 1px solid #ccc;
-    float: right;
-    padding: 2.08333333333%; /* 5px / 240px */
-    width: 30%; /* 240px / 800px */
-  }
+ 
 
   .sidebar ul {
     font-size: 14px;
