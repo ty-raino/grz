@@ -25,10 +25,10 @@ class UsersController < ApplicationController
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
     if @user
-        erb :'users/profile'
+      erb :'users/profile'
     else
-        not_found
+      not_found
     end
-end
+  end
   
 end

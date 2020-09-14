@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     end
 
     post '/signin' do
-        if params[:username].empty? || params[:password].empty?
+        if params[:username].blank? || params[:password].blank?
             flash[:error] = "All fields are required to sign in"
             erb :'sessions/signin'
         else

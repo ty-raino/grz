@@ -1,23 +1,24 @@
 <!-- Sign In -->
 
     <head>
-        <title>Sign In</title>
+        <title>Sign in</title>
     </head>
 
-    <h1>Sign In</h1>
+    <h1 style="color:red;">Sign in</h1>
 
-    <form method="post" action="/signin">
-    <p>
-        <label for="username">Username or Email</label>
-        <input type="username" name="username" id="username"/>
+   <form method="post" action="/signin">
+<fieldset>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="username" name="username" class="form-control" id="username" aria-describedby="username">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" name="password" class="form-control" id="password">
+    </div>
+  <input type="submit" class="btn btn-outline-primary" value="Sign in">
 
-    </p>
-    <p>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password"/>
-    </p>
-    <input type="submit" value="Sign In"/>
- 
-<h5>Not a user? <a href="/register"> Register</a></h5>   
+ <p>Not a user? <a href="/register">Register</a></p>
+ </fieldset>
     </form>
 

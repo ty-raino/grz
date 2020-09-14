@@ -1,22 +1,29 @@
 <!-- Register -->
+<head>
+<title>Register</title>
+</head>
 
-
-    <h1>Register User</h1>
+    <h1 style="color:red;">Register User</h1>
 
     <form method="post" action="/register">
-     <p>
-        <label for="username">Username</label>
-        <input type="username" name="username" id="username"/>
-     </p>
-     <p>
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email"/>
-     </p>
-     <p>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password"/>
-     </p>
-     <input type="submit" value="Register"/>
+ <fieldset>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="username" name="username" class="form-control" id="username" aria-describedby="username">
+    </div>
 
-     <h5>Already a user? <a href="/signin"> Sign In </a></h5>
+    <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" name="email" class="form-control" id="email" aria-describedby="email">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" name="password" class="form-control" id="password">
+    </div>
+  <input type="submit" class="btn btn-outline-primary" value="Register">
+
+ <p>Already a user? <a href="/signin">Sign in</a></p>
+ 
+ </fieldset>
     </form>

@@ -1,4 +1,6 @@
-<h1> Game Reviews</h1>
+<!-- Main Review Page -->
+
+<h1 style="color:red;"> Game Reviews</h1>
 
   <nav>
   <% if @reviews.empty? %>
@@ -17,8 +19,8 @@
   <a href="/signin">Sign In</a>
   <a href="/register">Register</a>
 <% else %>
-   <a href="/reviews/create_rev">Create a post</a>
-    <form method="post" action="/signout" style="display: inline-block;">
+   <a href="/reviews/create_rev">Create a Review</a>
+    <form method="post" action="/signout">
     <input type="hidden" name="_method" value="delete" />
     <input type="submit" value="Sign Out"/>
     </form>
