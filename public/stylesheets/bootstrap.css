@@ -61,6 +61,11 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
 
+.topcorner {
+  position:absolute;
+  top:10px;
+  right: 10px;
+}
 
 body {
   margin: 0;

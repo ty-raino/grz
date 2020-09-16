@@ -16,13 +16,13 @@
 
 <nav>
 <% if !signed_in?%>
-  <a href="/signin">Sign In</a>
-  <a href="/register">Register</a>
+  <a href="/signin" class="btn btn-outline-primary" style="float: right;">Sign In</a>
+  <a href="/register" class="btn btn-outline-primary" style="float: right;">Register</a>
 <% else %>
-   <a href="/reviews/create_rev">Create a Review</a>
+   <a href="/reviews/create_rev" class="btn btn-outline-primary">Create a Review</a>
     <form method="post" action="/signout">
     <input type="hidden" name="_method" value="delete" />
-    <input type="submit" value="Sign Out"/>
+    <input type="submit" class="btn btn-primary" style="float: right;" value="Sign Out"/>
     </form>
     <% end %>
 </nav>

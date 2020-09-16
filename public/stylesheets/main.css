@@ -24,11 +24,10 @@
 
   .wrapper {
     background: #fff;
-    
-    
     margin: 16px auto;
     padding: 1%; /* 18px / 800px */
-    width: 85%;
+    width: 50%;
+    height: 100%;
   }
 
   h1 {
