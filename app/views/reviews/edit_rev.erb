@@ -1,4 +1,4 @@
-<h1>Edit Post</h1>
+<h1>Edit Review</h1>
 
 <form method="post" action="/reviews/<%= @review.id %>">
     <input type="hidden" name="_method" value="patch" />
@@ -11,5 +11,5 @@
         <label for="body"></label>
          <textarea rows="4" cols="50" placeholder="Text" id="body" type="text" name="review[body]"><%= @review.body %></textarea>
     </p>
-<input type="submit" value="Update Review"/>
+<input type="submit" value="Save changes"/>
 </form>

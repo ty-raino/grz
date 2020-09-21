@@ -1,43 +1,32 @@
-<div class="wrapper"> 
-<header><img src="images/grz-logo-full.png" class="img-responsive main-image"></header>
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="/reviews">Reviews</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#profile">Profile</a>
-    </li>
-    
-  </ul>
-  <div id="myTabContent" class="tab-content">
-    <div class="tab-pane fade" id="home">
-    
-    </div>
-    <div class="tab-pane fade active show" id="profile">
 
-    <% if !signed_in?%>
-      <a href="/signin" class="btn btn-primary">Sign in</a>
-      <a href="/register" class="btn btn-primary">Register</a>
-    <% else %>
-      <form method="post" action="/signout">
-      <input type="hidden" name="_method" value="delete" />
-      <input type="submit" class="btn btn-outline-primary" value="Sign out">
-      </form>
-      <% end %>
-    </div>
-    <div class="tab-pane fade" id="dropdown1">
-      <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
-    </div>
-    <div class="tab-pane fade" id="dropdown2">
-      <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
-    </div>
-  </div>
+
+<div class="wrapper"> 
+
+<!-- Main Review Page -->
+
+<h1 style="color:red;"> Game Reviews</h1>
+
+  <nav>
+  <% if @reviews.empty? %>
+    <p>
+    <em>Be the first to make a review<em>
+    </p>
+  <% else %>
+    <% @reviews.each do |review| %>
+    <p><a href="/reviews/<%=review.id%>"><%=review.game_title%></a></p>
+    <% end %>
+  <% end %>
+  </nav>
+
+
+  
 </div>
 
 
 
 <!--
    <nav>
+   
       <% if !signed_in? %>
         <a href="/signin">Sign In</a>
         <a href="/register">Register</a>

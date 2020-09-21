@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     else
       @user = User.create(params)
       session[:user_id] = @user.id
-      flash[:success] = "You are now logged in"
+      flash[:success] = "You are now registered"
       redirect :'/reviews'
     end
   end

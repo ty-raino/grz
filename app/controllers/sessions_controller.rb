@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
     get '/signin' do
         if signed_in? 
             @users = User.all
-            redirect :'/reviews'
+            redirect :'/'
         else
             erb :'/sessions/signin'
         end

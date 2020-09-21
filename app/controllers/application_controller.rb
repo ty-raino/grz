@@ -13,6 +13,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
+    @reviews = Review.all
     erb :'welcome'
   end
 

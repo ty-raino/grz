@@ -16,6 +16,31 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<header><img src="images/grz.png" class="img-responsive main-image"></header>
+
+  <div class="collapse navbar-collapse" id="navbarColor03">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+     
+        <nav>
+<% if !signed_in?%>
+  <a href="/signin" class="btn btn-danger">Sign In</a>
+<% else %>
+   <a href="/reviews/create_rev" class="btn btn-secondary">Create a Review</a>
+    <form method="post" action="/signout">
+    <input type="hidden" name="_method" value="delete" />
+    <input type="submit" class="btn btn-secondary" style="float: right;" value="Sign Out"/>
+    </form>
+    <% end %>
+</nav>
+
+  </div>
+</nav>
+  
     <div class="wrapper">
     
       <%= styled_flash %>
